@@ -1,9 +1,23 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_project/screens/search_screen.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+import 'package:webview_flutter_android/webview_flutter_android.dart';
+import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: '.env');
+  WidgetsFlutterBinding.ensureInitialized();
+
+  if (WebViewPlatform.instance == null) {
+    if (defaultTargetPlatform == TargetPlatform.iOS) {
+      WebViewPlatform.instance = WebKitWebViewPlatform();
+    } else if (defaultTargetPlatform == TargetPlatform.android) {
+      WebViewPlatform.instance = AndroidWebViewPlatform();
+    }
+  }
+
   runApp(const MyApp());
 }
 
