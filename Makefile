@@ -1,5 +1,5 @@
 flutter.doctor:
-	cd flutter_project && flutter doctor
+	cd flutter_project && flutter doctor -v
 flutter.emulator:
 	cd flutter_project && flutter emulators
 flutter.devices:
