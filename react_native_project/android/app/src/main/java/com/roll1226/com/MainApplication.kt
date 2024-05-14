@@ -1,4 +1,4 @@
-package com.roll1226.react_native_project
+package com.roll1226.com
 
 import android.app.Application
 import android.content.res.Configuration

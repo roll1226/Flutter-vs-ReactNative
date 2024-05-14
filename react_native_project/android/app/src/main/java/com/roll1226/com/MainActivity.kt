@@ -1,4 +1,4 @@
-package com.roll1226.react_native_project
+package com.roll1226.com
 
 import android.os.Build
 import android.os.Bundle

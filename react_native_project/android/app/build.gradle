@@ -83,9 +83,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.roll1226.react_native_project'
+    namespace 'com.roll1226.com'
     defaultConfig {
-        applicationId 'com.roll1226.react_native_project'
+        applicationId 'com.roll1226.com'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
