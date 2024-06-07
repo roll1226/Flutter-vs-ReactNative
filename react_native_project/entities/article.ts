@@ -1,12 +1,12 @@
 import { User } from "./user";
 
 export class Article {
-  private title: string;
-  private user: User;
-  private likesCount: number;
-  private tags: String[];
-  private createdAt: Date;
-  private url: string;
+  title: string;
+  user: User;
+  likesCount: number;
+  tags: String[];
+  createdAt: Date;
+  url: string;
 
   constructor(
     title: string,
