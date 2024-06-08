@@ -2,10 +2,10 @@ import EditScreenInfo from "@/components/EditScreenInfo";
 import { Text, View } from "@/components/Themed";
 import { useSearchQiita } from "@/hooks/useSearchQiita";
 import React from "react";
-import { StyleSheet } from "react-native";
+import { Button, StyleSheet, TextInput } from "react-native";
 
 export default function TabOneScreen() {
-  const { title, setTitle, article, searchQiitaHandler } = useSearchQiita();
+  const { title, setTitle, articles, searchQiitaHandler } = useSearchQiita();
 
   return (
     <View style={styles.container}>
@@ -15,6 +15,12 @@ export default function TabOneScreen() {
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
+      <TextInput
+        placeholder="Input Title"
+        value={title}
+        onChangeText={(title) => setTitle(title)}
+      />
+      <Button onPress={() => searchQiitaHandler(title)} title="Button"></Button>
       <EditScreenInfo path="app/(tabs)/index.tsx" />
     </View>
   );

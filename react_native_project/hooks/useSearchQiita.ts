@@ -5,22 +5,22 @@ import { Dispatch, SetStateAction, useState } from "react";
 type UseSearchQiitaReturn = {
   title: string;
   setTitle: Dispatch<SetStateAction<string>>;
-  article: Article[];
-  searchQiitaHandler: () => Promise<void>;
+  articles: Article[];
+  searchQiitaHandler: (title: string) => Promise<void>;
 };
 
 type UseSearchQiita = () => UseSearchQiitaReturn;
 
 export const useSearchQiita: UseSearchQiita = () => {
   const [title, setTitle] = useState<string>("");
-  const [article, setArticle] = useState<Article[]>([]);
+  const [articles, setArticles] = useState<Article[]>([]);
 
-  const searchQiitaHandler = async (): Promise<void> => {
+  const searchQiitaHandler = async (title: string): Promise<void> => {
     const qiitaUtil = new QiitaUtil();
-    const articles = await qiitaUtil.searchQiita(title);
+    const articlesByQiita = await qiitaUtil.searchQiita(title);
 
-    setArticle((v) => [
-      ...articles.map(
+    setArticles((v) => [
+      ...articlesByQiita.map(
         (article) =>
           new Article(
             article.title,
@@ -32,12 +32,14 @@ export const useSearchQiita: UseSearchQiita = () => {
           )
       ),
     ]);
+
+    console.log(articles);
   };
 
   return {
     title,
     setTitle,
-    article,
+    articles,
     searchQiitaHandler,
   };
 };
