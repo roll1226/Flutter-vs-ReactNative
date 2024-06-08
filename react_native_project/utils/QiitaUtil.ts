@@ -1,5 +1,5 @@
 import { ENV } from "@/ENV";
-import { Article } from "@/entities/article";
+import { Article } from "@/models/article";
 
 export class QiitaUtil {
   private apiUrl: string;

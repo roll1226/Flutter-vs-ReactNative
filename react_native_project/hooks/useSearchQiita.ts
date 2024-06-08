@@ -1,4 +1,4 @@
-import { Article } from "@/entities/article";
+import { Article } from "@/models/article";
 import { QiitaUtil } from "@/utils/QiitaUtil";
 import { Dispatch, SetStateAction, useState } from "react";
 
@@ -16,6 +16,8 @@ export const useSearchQiita: UseSearchQiita = () => {
   const [articles, setArticles] = useState<Article[]>([]);
 
   const searchQiitaHandler = async (title: string): Promise<void> => {
+    if (!title) return;
+
     const qiitaUtil = new QiitaUtil();
     const articlesByQiita = await qiitaUtil.searchQiita(title);
 
