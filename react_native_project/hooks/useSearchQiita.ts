@@ -12,14 +12,14 @@ type UseSearchQiitaReturn = {
 type UseSearchQiita = () => UseSearchQiitaReturn;
 
 export const useSearchQiita: UseSearchQiita = () => {
-  const [title, setTitle] = useState<string>("roll1226");
+  const [title, setTitle] = useState<string>("");
   const [article, setArticle] = useState<Article[]>([]);
 
   const searchQiitaHandler = async (): Promise<void> => {
     const qiitaUtil = new QiitaUtil();
     const articles = await qiitaUtil.searchQiita(title);
+
     setArticle((v) => [
-      ...v,
       ...articles.map(
         (article) =>
           new Article(

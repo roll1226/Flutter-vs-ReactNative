@@ -1,6 +1,6 @@
 import EditScreenInfo from "@/components/EditScreenInfo";
 import { Text, View } from "@/components/Themed";
-import { useSearchQiita } from "@/hooks/useSearchQiite";
+import { useSearchQiita } from "@/hooks/useSearchQiita";
 import React from "react";
 import { StyleSheet } from "react-native";
 
