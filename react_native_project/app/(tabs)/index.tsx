@@ -1,11 +1,13 @@
 import EditScreenInfo from "@/components/EditScreenInfo";
 import { Text, View } from "@/components/Themed";
+import { useArticle } from "@/hooks/useArticle";
 import { useSearchQiita } from "@/hooks/useSearchQiita";
 import React from "react";
 import { Button, StyleSheet, TextInput } from "react-native";
 
 export default function TabOneScreen() {
   const { title, setTitle, articles, searchQiitaHandler } = useSearchQiita();
+  const { article, setArticle } = useArticle();
 
   return (
     <View style={styles.container}>
