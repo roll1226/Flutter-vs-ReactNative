@@ -8,7 +8,7 @@ export const articleAtom = atom<Article>({
     title: "",
     user: {
       id: "",
-      profileImageUrl: "",
+      profile_image_url: "",
     },
     likesCount: 0,
     tags: [],

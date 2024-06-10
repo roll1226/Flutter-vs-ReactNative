@@ -1,9 +1,9 @@
 export class User {
   id: string;
-  profileImageUrl: string;
+  profile_image_url: string;
 
-  constructor(id: string, profileImageUrl: string) {
+  constructor(id: string, profile_image_url: string) {
     this.id = id;
-    this.profileImageUrl = profileImageUrl;
+    this.profile_image_url = profile_image_url;
   }
 }

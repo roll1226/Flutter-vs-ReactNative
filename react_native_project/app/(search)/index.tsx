@@ -1,13 +1,7 @@
+import { ArticleCard } from "@/components/ArticleCard";
 import { useSearchQiita } from "@/hooks/useSearchQiita";
 import React from "react";
-import {
-  Button,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { Button, ScrollView, StyleSheet, TextInput, View } from "react-native";
 
 export default function SearchScreen() {
   const { title, setTitle, articles, searchQiitaHandler } = useSearchQiita();
@@ -29,13 +23,9 @@ export default function SearchScreen() {
         <View style={styles.separator} />
       </View>
 
-      <ScrollView>
-        {articles.map((article) => {
-          return (
-            <View>
-              <Text>{article.title}</Text>
-            </View>
-          );
+      <ScrollView style={styles.scroll} contentContainerStyle={{ rowGap: 20 }}>
+        {articles.map((article, index) => {
+          return <ArticleCard article={article} key={index} />;
         })}
       </ScrollView>
     </View>
@@ -54,5 +44,9 @@ const styles = StyleSheet.create({
     height: 1,
     width: "80%",
     backgroundColor: "rgba(100,100,100, 0.5)",
+  },
+  scroll: {
+    height: "70%",
+    padding: 20,
   },
 });
