@@ -35,8 +35,6 @@ export const useSearchQiita: UseSearchQiita = () => {
           )
       ),
     ]);
-
-    console.log(articles);
   };
 
   return {

@@ -1,10 +1,14 @@
 import { User } from "./user";
 
+type tag = {
+  name: string;
+};
+
 export class Article {
   title: string;
   user: User;
   likes_count: number;
-  tags: String[];
+  tags: tag[];
   created_at: Date;
   url: string;
 
@@ -12,7 +16,7 @@ export class Article {
     title: string,
     user: User,
     likes_count: number,
-    tags: String[],
+    tags: tag[],
     created_at: Date,
     url: string
   ) {

@@ -29,6 +29,8 @@ export class QiitaUtil {
       }
 
       const data = await response.json();
+      console.log(data);
+
       return data;
     } catch (e) {
       if (e instanceof Error) {

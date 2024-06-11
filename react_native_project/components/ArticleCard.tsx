@@ -12,12 +12,17 @@ export const ArticleCard: FC<Props> = ({ article }) => {
     <View style={styles.card}>
       <Text>{format(article.created_at, "yyyy/MM/dd")}</Text>
       <Text>{article.title}</Text>
+      {article.tags.map((tag) => (
+        <Text>{tag.name}</Text>
+      ))}
+      <Text>{article.likes_count}</Text>
       <Image
         style={styles.icon}
         source={{
           uri: article.user.profile_image_url,
         }}
       />
+      <Text>{article.user.id}</Text>
     </View>
   );
 };
