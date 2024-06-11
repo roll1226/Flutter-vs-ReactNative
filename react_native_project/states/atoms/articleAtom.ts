@@ -10,9 +10,9 @@ export const articleAtom = atom<Article>({
       id: "",
       profile_image_url: "",
     },
-    likesCount: 0,
+    likes_count: 0,
     tags: [],
-    createdAt: new Date(),
+    created_at: new Date(),
     url: "",
   },
 });

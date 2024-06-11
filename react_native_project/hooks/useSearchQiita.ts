@@ -28,9 +28,9 @@ export const useSearchQiita: UseSearchQiita = () => {
           new Article(
             article.title,
             new User(article.user.id, article.user.profile_image_url),
-            article.likesCount,
+            article.likes_count,
             article.tags,
-            article.createdAt,
+            article.created_at,
             article.url
           )
       ),

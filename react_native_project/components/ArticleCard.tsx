@@ -1,4 +1,5 @@
 import { Article } from "@/models/article";
+import { format } from "date-fns";
 import React, { FC } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 
@@ -9,6 +10,7 @@ type Props = {
 export const ArticleCard: FC<Props> = ({ article }) => {
   return (
     <View style={styles.card}>
+      <Text>{format(article.created_at, "yyyy/MM/dd")}</Text>
       <Text>{article.title}</Text>
       <Image
         style={styles.icon}

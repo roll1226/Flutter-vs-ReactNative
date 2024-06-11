@@ -3,24 +3,24 @@ import { User } from "./user";
 export class Article {
   title: string;
   user: User;
-  likesCount: number;
+  likes_count: number;
   tags: String[];
-  createdAt: Date;
+  created_at: Date;
   url: string;
 
   constructor(
     title: string,
     user: User,
-    likesCount: number,
+    likes_count: number,
     tags: String[],
-    createdAt: Date,
+    created_at: Date,
     url: string
   ) {
     this.title = title;
     this.user = user;
-    this.likesCount = likesCount;
+    this.likes_count = likes_count;
     this.tags = tags;
-    this.createdAt = createdAt;
+    this.created_at = created_at;
     this.url = url;
   }
 }
