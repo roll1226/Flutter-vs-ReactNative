@@ -2,6 +2,7 @@ import { Article } from "@/models/article";
 import { format } from "date-fns";
 import React, { FC } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 type Props = {
   article: Article;
@@ -10,21 +11,23 @@ type Props = {
 export const ArticleCard: FC<Props> = ({ article }) => {
   return (
     <View style={styles.card}>
-      <View>
+      <View style={styles.header}>
         <Text>{format(article.created_at, "yyyy/MM/dd")}</Text>
         <Text>{article.title}</Text>
-        <View style={{ justifyContent: "flex-start", flexDirection: "row" }}>
+        <View style={styles.tags}>
           {article.tags.map((tag) => (
             <Text>{tag.name}</Text>
           ))}
         </View>
       </View>
-      <View style={{ justifyContent: "space-between", flexDirection: "row" }}>
-        <View>
+
+      <View style={styles.footer}>
+        <View style={styles.like}>
+          <Icon name="heart" size={24} />
           <Text>{article.likes_count}</Text>
         </View>
 
-        <View style={{ alignItems: "flex-end" }}>
+        <View style={styles.user}>
           <Image
             style={styles.icon}
             source={{
@@ -44,10 +47,29 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 16,
     borderColor: "#999",
+    gap: 20,
   },
   icon: {
-    width: 40,
-    height: 40,
+    width: 32,
+    height: 32,
     borderRadius: 50,
+  },
+  tags: {
+    justifyContent: "flex-start",
+    flexDirection: "row",
+  },
+  like: {
+    alignItems: "center",
+    gap: 4,
+  },
+  user: {
+    alignItems: "flex-end",
+    gap: 8,
+  },
+  header: {},
+  footer: {
+    justifyContent: "space-between",
+    alignItems: "flex-end",
+    flexDirection: "row",
   },
 });
