@@ -25,27 +25,18 @@ export const ArticleCard: FC<Props> = ({ article }) => {
       <Link href="/modal" asChild>
         <TouchableOpacity style={styles.modalLink}>
           <View style={styles.header}>
-            <View>
-              <Text>{format(article.created_at, "yyyy/MM/dd")}</Text>
-              <Text>{article.title}</Text>
-              <View style={styles.tags}>
-                {article.tags.map((tag) => (
-                  <Text key={tag.name} style={styles.tag}>
-                    {tag.name}
-                  </Text>
-                ))}
-              </View>
+            <Text>{format(article.created_at, "yyyy/MM/dd")}</Text>
+            <Text>{article.title}</Text>
+            <View style={styles.tags}>
+              {article.tags.map((tag) => (
+                <Text key={tag.name} style={styles.tag}>
+                  {tag.name}
+                </Text>
+              ))}
             </View>
           </View>
 
           <View style={styles.footer}>
-            {/* <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            > */}
             <View style={styles.like}>
               <FontAwesome
                 name="heart"
@@ -65,7 +56,6 @@ export const ArticleCard: FC<Props> = ({ article }) => {
               <Text>{article.user.id}</Text>
             </View>
           </View>
-          {/* </View> */}
         </TouchableOpacity>
       </Link>
     </View>
