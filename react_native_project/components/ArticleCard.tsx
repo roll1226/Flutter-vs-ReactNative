@@ -25,13 +25,13 @@ export const ArticleCard: FC<Props> = ({ article }) => {
       <Link href="/modal" asChild>
         <TouchableOpacity style={styles.modalLink}>
           <View style={styles.header}>
-            <Text>{format(article.created_at, "yyyy/MM/dd")}</Text>
+            <Text style={styles.createdAt}>
+              {format(article.created_at, "yyyy/MM/dd")}
+            </Text>
             <Text>{article.title}</Text>
             <View style={styles.tags}>
-              {article.tags.map((tag) => (
-                <Text key={tag.name} style={styles.tag}>
-                  {tag.name}
-                </Text>
+              {article.tags.map((tag, index) => (
+                <Text key={index}>{tag.name}</Text>
               ))}
             </View>
           </View>
@@ -71,6 +71,9 @@ const styles = StyleSheet.create({
     gap: 20,
     width: "100%",
   },
+  createdAt: {
+    marginBottom: 8,
+  },
   icon: {
     width: 32,
     height: 32,
@@ -80,6 +83,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     flexDirection: "row",
     flexWrap: "wrap",
+    gap: 8,
   },
   tag: {
     marginRight: 8,
@@ -92,7 +96,9 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
     gap: 8,
   },
-  header: {},
+  header: {
+    flexDirection: "column",
+  },
   footer: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -101,8 +107,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   modalLink: {
-    alignItems: "center",
-    justifyContent: "center",
+    gap: 20,
     width: "100%",
   },
 });
