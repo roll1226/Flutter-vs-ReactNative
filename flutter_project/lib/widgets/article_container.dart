@@ -21,7 +21,7 @@ class ArticleContainer extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
               decoration: const BoxDecoration(
                   color: Color(0xFF55C500),
-                  borderRadius: BorderRadius.all(Radius.circular(32))),
+                  borderRadius: BorderRadius.all(Radius.circular(12))),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
