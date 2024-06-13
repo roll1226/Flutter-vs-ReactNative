@@ -38,7 +38,7 @@ export const ArticleCard: FC<Props> = ({ article }) => {
             <Text>{article.title}</Text>
             <View style={styles.tags}>
               {article.tags.map((tag, index) => (
-                <Text key={index}>{tag.name}</Text>
+                <Text key={index}>{tag}</Text>
               ))}
             </View>
           </View>
@@ -50,14 +50,14 @@ export const ArticleCard: FC<Props> = ({ article }) => {
                 size={25}
                 color={Colors[colorScheme ?? "light"].text}
               />
-              <Text>{article.likes_count}</Text>
+              <Text>{article.likesCount}</Text>
             </View>
 
             <View style={styles.user}>
               <Image
                 style={styles.icon}
                 source={{
-                  uri: article.user.profile_image_url,
+                  uri: article.user.profileImageUrl,
                 }}
               />
               <Text>{article.user.id}</Text>

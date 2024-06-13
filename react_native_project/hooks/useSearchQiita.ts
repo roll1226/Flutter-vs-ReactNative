@@ -1,5 +1,4 @@
 import { Article } from "@/models/article";
-import { User } from "@/models/user";
 import { QiitaUtil } from "@/utils/QiitaUtil";
 import { Dispatch, SetStateAction, useState } from "react";
 
@@ -23,17 +22,7 @@ export const useSearchQiita: UseSearchQiita = () => {
     const articlesByQiita = await qiitaUtil.searchQiita(title);
 
     setArticles((v) => [
-      ...articlesByQiita.map(
-        (article) =>
-          new Article(
-            article.title,
-            new User(article.user.id, article.user.profile_image_url),
-            article.likes_count,
-            article.tags,
-            article.created_at,
-            article.url
-          )
-      ),
+      ...articlesByQiita.map((article) => new Article(article)),
     ]);
   };
 

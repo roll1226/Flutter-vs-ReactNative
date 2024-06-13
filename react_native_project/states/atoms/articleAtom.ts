@@ -8,9 +8,9 @@ export const articleAtom = atom<Article>({
     title: "",
     user: {
       id: "",
-      profile_image_url: "",
+      profileImageUrl: "",
     },
-    likes_count: 0,
+    likesCount: 0,
     tags: [],
     created_at: new Date(),
     url: "",

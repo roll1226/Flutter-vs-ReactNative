@@ -1,30 +1,20 @@
+import { ArticleResponse } from "@/utils/QiitaUtil";
 import { User } from "./user";
-
-type tag = {
-  name: string;
-};
 
 export class Article {
   title: string;
   user: User;
-  likes_count: number;
-  tags: tag[];
+  likesCount: number;
+  tags: string[];
   created_at: Date;
   url: string;
 
-  constructor(
-    title: string,
-    user: User,
-    likes_count: number,
-    tags: tag[],
-    created_at: Date,
-    url: string
-  ) {
-    this.title = title;
-    this.user = user;
-    this.likes_count = likes_count;
-    this.tags = tags;
-    this.created_at = created_at;
-    this.url = url;
+  constructor(article: ArticleResponse) {
+    this.title = article.title;
+    this.user = new User(article.user);
+    this.likesCount = article.likes_count;
+    this.tags = article.tags.map((tag) => tag.name);
+    this.created_at = new Date(article.created_at);
+    this.url = article.url;
   }
 }
