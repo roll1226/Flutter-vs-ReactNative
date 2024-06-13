@@ -20,7 +20,7 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Qiita検索'),
+        title: const Text('検索'),
         titleTextStyle: const TextStyle(fontSize: 24, color: Colors.white),
       ),
       body: Column(
@@ -47,16 +47,12 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   Future<List<Article>> searchQiita(String keyword) async {
-    // 1. http通信に必要なデータを準備
     final uri = Uri.https('qiita.com', '/api/v2/items',
         {'query': 'title:$keyword', 'pre_page': '10'});
     final String token = dotenv.env['QIITA_ACCESS_TOKEN'] ?? '';
-    // 2. QiitaAPIにリクエスト
     final http.Response res =
         await http.get(uri, headers: {'Authorization': 'Bearer $token'});
-    // 3. 戻り地をArticleクラスの配列に変換
     if (res.statusCode != 200) return [];
-    // 4. 変換したArticleクラスの配列を返す
     final List<dynamic> body = jsonDecode(res.body);
     return body.map((dynamic json) => Article.fromJson(json)).toList();
   }

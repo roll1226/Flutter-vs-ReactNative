@@ -28,10 +28,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Qiita検索アプリ',
+        title: '検索アプリ',
         theme: ThemeData(
           primaryColor: Colors.green,
-          appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF55C500)),
+          appBarTheme: const AppBarTheme(backgroundColor: Colors.grey),
           textTheme: Theme.of(context).textTheme.apply(bodyColor: Colors.white),
           fontFamily: 'Hiragino Sans',
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightGreen),

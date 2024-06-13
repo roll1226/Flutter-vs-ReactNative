@@ -19,8 +19,8 @@ class ArticleContainer extends StatelessWidget {
           },
           child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-              decoration: const BoxDecoration(
-                  color: Color(0xFF55C500),
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black),
                   borderRadius: BorderRadius.all(Radius.circular(12))),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,7 +28,7 @@ class ArticleContainer extends StatelessWidget {
                   Text(
                     DateFormat('yyyy/MM/dd').format(article.createdAt),
                     style: const TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                       fontSize: 12,
                     ),
                   ),
@@ -39,12 +39,12 @@ class ArticleContainer extends StatelessWidget {
                     style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white),
+                        color: Colors.black),
                   ),
                   Text('#${article.tags.join(' #')}',
                       style: const TextStyle(
                           fontSize: 12,
-                          color: Colors.white,
+                          color: Colors.black,
                           fontStyle: FontStyle.italic)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -52,10 +52,10 @@ class ArticleContainer extends StatelessWidget {
                     children: [
                       Column(
                         children: [
-                          const Icon(Icons.favorite, color: Colors.white),
+                          const Icon(Icons.favorite, color: Colors.black),
                           Text(article.likesCount.toString(),
                               style: const TextStyle(
-                                  fontSize: 12, color: Colors.white))
+                                  fontSize: 12, color: Colors.black))
                         ],
                       ),
                       Column(
@@ -72,7 +72,7 @@ class ArticleContainer extends StatelessWidget {
                           Text(
                             article.user.id,
                             style: const TextStyle(
-                                fontSize: 12, color: Colors.white),
+                                fontSize: 12, color: Colors.black),
                           )
                         ],
                       )
