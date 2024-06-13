@@ -5,14 +5,15 @@ import {
   ThemeProvider,
 } from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
 import "react-native-reanimated";
 
 import { useColorScheme } from "@/components/useColorScheme";
+import { articleTitleState } from "@/states/selector/articleSelector";
+import { Stack } from "expo-router";
 import React from "react";
-import { RecoilRoot } from "recoil";
+import { RecoilRoot, useRecoilValue } from "recoil";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -51,16 +52,27 @@ export default function RootLayout() {
   return <RootLayoutNav />;
 }
 
+const Router: FC = () => {
+  const articleTitle = useRecoilValue(articleTitleState);
+
+  return (
+    <Stack initialRouteName="(search)">
+      <Stack.Screen name="(search)" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="modal"
+        options={{ presentation: "modal", title: articleTitle }}
+      />
+    </Stack>
+  );
+};
+
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <RecoilRoot>
-        <Stack initialRouteName="(search)">
-          <Stack.Screen name="(search)" options={{ headerShown: false }} />
-          <Stack.Screen name="modal" options={{ presentation: "modal" }} />
-        </Stack>
+        <Router />
       </RecoilRoot>
     </ThemeProvider>
   );

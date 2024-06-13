@@ -1,15 +1,17 @@
 import { View } from "@/components/Themed";
+import { articleUrlState } from "@/states/selector/articleSelector";
 import React from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
 import { WebView } from "react-native-webview";
+import { useRecoilValue } from "recoil";
 
 export default function ModalScreen() {
-  const END_POINT = "https://example.com";
+  const articleUrl = useRecoilValue(articleUrlState);
 
   return (
     <View style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
-        <WebView source={{ uri: END_POINT }} style={styles.webview} />
+        <WebView source={{ uri: articleUrl }} style={styles.webview} />
       </SafeAreaView>
     </View>
   );

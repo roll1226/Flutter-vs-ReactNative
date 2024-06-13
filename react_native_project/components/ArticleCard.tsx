@@ -1,4 +1,5 @@
 import { Article } from "@/models/article";
+import { articleAtom } from "@/states/atoms/articleAtom";
 import { FontAwesome } from "@expo/vector-icons";
 import { format } from "date-fns";
 import { Link } from "expo-router";
@@ -12,6 +13,7 @@ import {
   useColorScheme,
 } from "react-native";
 import { Colors } from "react-native/Libraries/NewAppScreen";
+import { useRecoilState } from "recoil";
 
 type Props = {
   article: Article;
@@ -19,10 +21,15 @@ type Props = {
 
 export const ArticleCard: FC<Props> = ({ article }) => {
   const colorScheme = useColorScheme();
+  const [, setArticle] = useRecoilState(articleAtom);
+
+  const setArticleState = (article: Article) => {
+    setArticle(article);
+  };
 
   return (
     <View style={styles.card}>
-      <Link href="/modal" asChild>
+      <Link href="/modal" asChild onPress={() => setArticleState(article)}>
         <TouchableOpacity style={styles.modalLink}>
           <View style={styles.header}>
             <Text style={styles.createdAt}>
