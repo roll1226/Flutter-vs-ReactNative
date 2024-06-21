@@ -21,7 +21,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Article画面'),
+        title: Text(widget.article.title),
       ),
       body: WebViewWidget(controller: controller),
     );
