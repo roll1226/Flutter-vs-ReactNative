@@ -22,7 +22,10 @@ class Article {
         user: User.fromJson(json['user']),
         createdAt: DateTime.parse(json['created_at'] as String),
         url: json['url'] as String,
-        likesCount: json['likes_count'] as int,
-        tags: List<String>.from(json['tags'].map((tag) => tag['name'])));
+        likesCount:
+            json['likes_count'] != null ? json['likes_count'] as int : 0,
+        tags: json['tags'] != null
+            ? List<String>.from(json['tags'].map((tag) => tag['name']))
+            : []);
   }
 }
