@@ -26,10 +26,7 @@ void main() {
 
       await tester.pumpWidget(MaterialApp(home: SearchScreen(client: client)));
 
-      // 例: AppBarが存在することを確認する
       expect(find.byType(AppBar), findsOneWidget);
-
-      // 例: 検索入力用のTextFieldが存在することを確認する
       expect(find.byType(TextField), findsOneWidget);
     });
   });
