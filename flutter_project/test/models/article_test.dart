@@ -8,8 +8,7 @@ void main() {
         'title': 'Sample Article',
         'user': {
           'id': 'testUser',
-          'profile_image_url':
-              'https://webnexty.com/wp-content/uploads/2015/03/ffffff.png',
+          'profileImageUrl': 'https://example.com/profile.jpg',
         },
         'likes_count': 42,
         'tags': [
@@ -24,8 +23,7 @@ void main() {
 
       expect(article.title, 'Sample Article');
       expect(article.user.id, 'testUser');
-      expect(article.user.profileImageUrl,
-          'https://webnexty.com/wp-content/uploads/2015/03/ffffff.png');
+      expect(article.user.profileImageUrl, 'https://example.com/profile.jpg');
       expect(article.likesCount, 42);
       expect(article.tags, ['flutter', 'dart']);
       expect(article.createdAt, DateTime.parse('2024-06-22T00:00:00.000Z'));
