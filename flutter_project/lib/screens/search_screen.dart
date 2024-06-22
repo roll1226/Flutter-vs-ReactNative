@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_project/models/article.dart';
 import 'package:flutter_project/widgets/article_container.dart';
-import 'package:http/http.dart' as http; // httpという変数を通して、httpパッケージにアクセス
+import 'package:http/http.dart' as http;
 
 class SearchScreen extends StatefulWidget {
-  const SearchScreen({super.key});
+  final http.Client client;
+  const SearchScreen({super.key, required this.client});
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
@@ -48,10 +49,10 @@ class _SearchScreenState extends State<SearchScreen> {
 
   Future<List<Article>> searchQiita(String keyword) async {
     final uri = Uri.https('qiita.com', '/api/v2/items',
-        {'query': 'title:$keyword', 'pre_page': '10'});
+        {'query': 'title:$keyword', 'per_page': '10'});
     final String token = dotenv.env['QIITA_ACCESS_TOKEN'] ?? '';
     final http.Response res =
-        await http.get(uri, headers: {'Authorization': 'Bearer $token'});
+        await widget.client.get(uri, headers: {'Authorization': 'Bearer $token'});
     if (res.statusCode != 200) return [];
     final List<dynamic> body = jsonDecode(res.body);
     return body.map((dynamic json) => Article.fromJson(json)).toList();

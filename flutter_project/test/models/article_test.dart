@@ -8,7 +8,7 @@ void main() {
         'title': 'Sample Article',
         'user': {
           'id': 'testUser',
-          'profileImageUrl': 'https://example.com/profile.jpg',
+          'profile_image_url': 'https://example.com/profile.jpg',
         },
         'likes_count': 42,
         'tags': [
