@@ -43,6 +43,8 @@ dependencies:
   mockito: ^5.0.0
   build_runner: ^2.1.7
   mock_web_server: ^5.0.0-nullsafety.1
+  network_image_mock: ^2.0.1
+  webview_flutter_platform_interface: ^2.10.0
 
 dev_dependencies:
   flutter_test:
