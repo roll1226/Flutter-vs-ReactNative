@@ -10,7 +10,7 @@ describe("useSearchQiita", () => {
     // Arrange
     const mockArticles: Article[] = [
       {
-        title: "React NativeでMetroのキャッシュをクリアする方法",
+        title: "Sample Article 1",
         user: { id: "user1", profileImageUrl: "https://example.com" },
         likesCount: 5,
         tags: ["technology"],
@@ -18,7 +18,7 @@ describe("useSearchQiita", () => {
         url: "https://example.com/mock-article-1",
       },
       {
-        title: "React NativeでHealthKitとHealth Connectと連携する",
+        title: "Sample Article 2",
         user: { id: "user2", profileImageUrl: "https://example.com" },
         likesCount: 10,
         tags: ["technology"],
