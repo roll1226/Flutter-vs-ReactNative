@@ -30,7 +30,7 @@ export const ArticleCard: FC<Props> = ({ article }) => {
   return (
     <View style={styles.card}>
       <Link href="/modal" asChild onPress={() => setArticleState(article)}>
-        <TouchableOpacity style={styles.modalLink}>
+        <TouchableOpacity style={styles.modalLink} testID="modal-link">
           <View style={styles.header}>
             <Text style={styles.createdAt}>
               {format(article.created_at, "yyyy/MM/dd")}
@@ -56,6 +56,7 @@ export const ArticleCard: FC<Props> = ({ article }) => {
             <View style={styles.user}>
               <Image
                 style={styles.icon}
+                testID="article-image"
                 source={{
                   uri: article.user.profileImageUrl,
                 }}

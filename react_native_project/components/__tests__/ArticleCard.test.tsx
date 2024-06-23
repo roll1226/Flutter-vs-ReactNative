@@ -1,58 +1,59 @@
-// __tests__/ArticleCard.test.tsx
-import { fireEvent, render } from "@testing-library/react-native";
+import { ArticleCard } from "@/components/ArticleCard";
+import { Article } from "@/models/article";
+import { articleAtom } from "@/states/atoms/articleAtom";
+import { fireEvent, render, waitFor } from "@testing-library/react-native";
 import React from "react";
-import { TouchableOpacity } from "react-native";
-import { RecoilRoot } from "recoil";
-import { Article } from "../../models/article";
-import { ArticleCard } from "../ArticleCard";
+import { RecoilRoot, useRecoilState } from "recoil";
 
 const mockArticle: Article = {
   title: "Test Article",
-  created_at: new Date(),
-  tags: ["tag1", "tag2"],
+  user: { id: "testUser", profileImageUrl: "https://example.com/image.png" },
   likesCount: 10,
-  url: "https://example.com",
-  user: {
-    id: "user1",
-    profileImageUrl: "https://example.com/profile.jpg",
-  },
+  tags: ["react", "typescript"],
+  created_at: new Date("2023-01-01"),
+  url: "https://example.com/test-article",
 };
 
-jest.mock("expo-router", () => ({
-  Link: ({ children, onPress }: any) => (
-    <TouchableOpacity onPress={onPress}>{children}</TouchableOpacity>
-  ),
-}));
-
 describe("ArticleCard", () => {
-  it("should render article information", () => {
-    const { getByText, getByRole } = render(
+  it("renders correctly", () => {
+    const { getByText, getByTestId } = render(
       <RecoilRoot>
         <ArticleCard article={mockArticle} />
       </RecoilRoot>
     );
 
-    expect(getByText(mockArticle.title)).toBeTruthy();
-    expect(getByText("tag1")).toBeTruthy();
-    expect(getByText("tag2")).toBeTruthy();
-    expect(getByText(mockArticle.user.id)).toBeTruthy();
-    expect(getByText(mockArticle.likesCount.toString())).toBeTruthy();
-    expect(getByRole("image")).toBeTruthy();
+    expect(getByText("Test Article")).toBeTruthy();
+    expect(getByText("2023/01/01")).toBeTruthy();
+    expect(getByText("react")).toBeTruthy();
+    expect(getByText("typescript")).toBeTruthy();
+    expect(getByText("10")).toBeTruthy();
+    expect(getByText("testUser")).toBeTruthy();
+    expect(getByTestId("article-image").props.source.uri).toBe(
+      "https://example.com/image.png"
+    );
   });
 
-  it("should handle modal link press", () => {
-    const setArticleMock = jest.fn();
+  it("calls setArticleState when the link is pressed", () => {
+    // Arrange
+    const setArticle = jest.fn();
+    const useRecoilStateMock = () => [null, setArticle];
     jest
-      .spyOn(recoil, "useRecoilState")
-      .mockReturnValue([mockArticle, setArticleMock]);
+      .spyOn(require("recoil"), "useRecoilState")
+      .mockImplementation(useRecoilStateMock);
 
-    const { getByText } = render(
+    const { getByTestId } = render(
       <RecoilRoot>
         <ArticleCard article={mockArticle} />
       </RecoilRoot>
     );
 
-    fireEvent.press(getByText(mockArticle.title));
-    expect(setArticleMock).toHaveBeenCalledWith(mockArticle);
+    const modalLink = getByTestId("modal-link");
+    fireEvent.press(modalLink);
+
+    // Recoil state update is an asynchronous operation, so wait for the state update
+    waitFor(() => {
+      const state = useRecoilState(articleAtom);
+      expect(state[0]).toEqual(mockArticle);
+    });
   });
 });
