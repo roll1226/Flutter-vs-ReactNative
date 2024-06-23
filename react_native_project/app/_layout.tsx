@@ -9,7 +9,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { FC, useEffect } from "react";
 import "react-native-reanimated";
 
-import { useColorScheme } from "@/components/useColorScheme";
+import { useColorScheme } from "@/hooks/useColorScheme";
 import { articleTitleState } from "@/states/selector/articleSelector";
 import { Stack } from "expo-router";
 import React from "react";

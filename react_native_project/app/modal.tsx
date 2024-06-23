@@ -1,7 +1,6 @@
-import { View } from "@/components/Themed";
 import { articleUrlState } from "@/states/selector/articleSelector";
 import React from "react";
-import { SafeAreaView, StyleSheet } from "react-native";
+import { SafeAreaView, StyleSheet, View } from "react-native";
 import { WebView } from "react-native-webview";
 import { useRecoilValue } from "recoil";
 
