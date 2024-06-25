@@ -10,7 +10,7 @@ import { FC, useEffect } from "react";
 import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
-import { articleTitleState } from "@/states/selector/articleSelector";
+import { articleTitleState } from "@/states/selectors/articleSelector";
 import { Stack } from "expo-router";
 import React from "react";
 import { RecoilRoot, useRecoilValue } from "recoil";
