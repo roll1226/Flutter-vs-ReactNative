@@ -1,8 +1,9 @@
 import { Article } from "@/models/article";
 import { articleAtom } from "@/states/atoms/articleAtom";
 import { ArticleResponse } from "@/utils/QiitaUtil";
-import { render } from "@testing-library/react";
+import { render } from "@testing-library/react-native";
 import React, { useEffect } from "react";
+import { Image, Text, View } from "react-native";
 import { RecoilRoot, useRecoilState } from "recoil";
 
 const mockArticleResponse: ArticleResponse = {
@@ -61,18 +62,18 @@ const TestComponent = () => {
   }, []);
 
   return (
-    <div>
-      <h1 data-testid="title">{article.title}</h1>
-      <img
-        data-testid="profileImageUrl"
-        src={article.user.profileImageUrl}
-        alt="profile"
+    <View>
+      <Text testID="title">{article.title}</Text>
+      <Image
+        testID="profileImageUrl"
+        source={{ uri: article.user.profileImageUrl }}
+        style={{ width: 100, height: 100 }}
       />
-      <p data-testid="likesCount">{article.likesCount}</p>
-      <p data-testid="tags">{article.tags.join(", ")}</p>
-      <p data-testid="created_at">{article.created_at.toString()}</p>
-      <p data-testid="url">{article.url}</p>
-    </div>
+      <Text testID="likesCount">{article.likesCount}</Text>
+      <Text testID="tags">{article.tags.join(", ")}</Text>
+      <Text testID="created_at">{new Date(article.created_at).toString()}</Text>
+      <Text testID="url">{article.url}</Text>
+    </View>
   );
 };
 
@@ -84,16 +85,16 @@ describe("articleAtom", () => {
       </RecoilRoot>
     );
 
-    expect(getByTestId("title").textContent).toBe("Test Article");
-    expect(getByTestId("profileImageUrl").getAttribute("src")).toBe(
+    expect(getByTestId("title").props.children).toBe("Test Article");
+    expect(getByTestId("profileImageUrl").props.source.uri).toBe(
       "https://example.com"
     );
-    expect(getByTestId("likesCount").textContent).toBe("10");
-    expect(getByTestId("tags").textContent).toBe("technology");
-    expect(getByTestId("created_at").textContent).toBe(
+    expect(getByTestId("likesCount").props.children).toBe(10);
+    expect(getByTestId("tags").props.children).toBe("technology");
+    expect(getByTestId("created_at").props.children).toBe(
       new Date("2024-06-23T12:00:00Z").toString()
     );
-    expect(getByTestId("url").textContent).toBe(
+    expect(getByTestId("url").props.children).toBe(
       "https://example.com/test-article"
     );
   });

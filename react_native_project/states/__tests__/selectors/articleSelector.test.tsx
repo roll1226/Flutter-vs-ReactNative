@@ -3,19 +3,20 @@ import {
   articleTitleState,
   articleUrlState,
 } from "@/states/selectors/articleSelector";
-import { render } from "@testing-library/react";
+import { render } from "@testing-library/react-native";
 import React from "react";
+import { Text } from "react-native";
 import { RecoilRoot, useRecoilValue } from "recoil";
 
 // テスト用コンポーネント
 const TestUrlComponent = () => {
   const url = useRecoilValue(articleUrlState);
-  return <p data-testid="url">{url}</p>;
+  return <Text testID="url">{url}</Text>;
 };
 
 const TestTitleComponent = () => {
   const title = useRecoilValue(articleTitleState);
-  return <p data-testid="title">{title}</p>;
+  return <Text testID="title">{title}</Text>;
 };
 
 describe("articleUrlState and articleTitleState selectors", () => {
@@ -26,7 +27,7 @@ describe("articleUrlState and articleTitleState selectors", () => {
       </RecoilRoot>
     );
 
-    expect(getByTestId("url").textContent).toBe("");
+    expect(getByTestId("url").props.children).toBe("");
   });
 
   it("should return the correct default title from articleTitleState", () => {
@@ -36,7 +37,7 @@ describe("articleUrlState and articleTitleState selectors", () => {
       </RecoilRoot>
     );
 
-    expect(getByTestId("title").textContent).toBe("");
+    expect(getByTestId("title").props.children).toBe("");
   });
 
   it("should return the updated url from articleUrlState", () => {
@@ -64,7 +65,9 @@ describe("articleUrlState and articleTitleState selectors", () => {
       </RecoilRoot>
     );
 
-    expect(getByTestId("url").textContent).toBe("https://example.com/article");
+    expect(getByTestId("url").props.children).toBe(
+      "https://example.com/article"
+    );
   });
 
   it("should return the updated title from articleTitleState", () => {
@@ -92,6 +95,6 @@ describe("articleUrlState and articleTitleState selectors", () => {
       </RecoilRoot>
     );
 
-    expect(getByTestId("title").textContent).toBe("Test Title");
+    expect(getByTestId("title").props.children).toBe("Test Title");
   });
 });
