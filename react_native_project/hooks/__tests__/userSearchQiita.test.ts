@@ -27,7 +27,7 @@ describe("useSearchQiita", () => {
       },
     ];
 
-    const mockTitle = "react native";
+    const mockTitle = "Sample Article 1";
 
     const mockSearchQiita = jest.fn().mockResolvedValue(mockArticles);
     (QiitaUtil as jest.Mock).mockImplementation(() => ({
